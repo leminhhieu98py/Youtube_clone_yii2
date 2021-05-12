@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'iTube',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -44,5 +45,6 @@ return [
             ],
         ],
     ],
+    'language' => 'en-US',
     'params' => $params,
 ];

@@ -42,7 +42,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'videos/update/<id>' => 'videos/update',
             ],
+        ],
+        'assetManager' => [
+            'appendTimestamp' => true,
         ],
     ],
     'language' => 'en-US',

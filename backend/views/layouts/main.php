@@ -13,7 +13,7 @@ $this->beginContent('@backend/views/layouts/base.php');
 <main class="d-flex">
     <?php echo $this->render('_sidebar'); ?>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper p-4">
         <?=Alert::widget()?>
         <?=$content?>
     </div>

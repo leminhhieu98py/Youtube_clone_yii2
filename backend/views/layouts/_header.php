@@ -19,7 +19,7 @@ if (Yii::$app->user->isGuest) {
         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
         'url' => ['/site/logout'],
         'linkOptions' => [
-            'data-method' => 'post',
+            'data-method' => 'POST',
         ],
     ];
     $url = \yii\helpers\Url::base();

@@ -33,6 +33,10 @@ class Videos extends \yii\db\ActiveRecord
      */
     public $videos;
     /**
+     * @var \yii\web\UploadedFile
+     */
+    public $thumbnail;
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -85,6 +89,7 @@ class Videos extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
+            'thumbnail' => "Thumbnail",
         ];
     }
 
@@ -114,6 +119,9 @@ class Videos extends \yii\db\ActiveRecord
             $this->title = $this->videos->name;
             $this->video_name = $this->videos->name;
         }
+        if ($this->thumbnail) {
+            $this->has_thumbnail = 1;
+        }
         $saved = parent::save($runValidation, $attributeNames);
         if (!$saved) {
             return false;
@@ -125,6 +133,33 @@ class Videos extends \yii\db\ActiveRecord
             }
             $this->videos->saveAs($videoPath);
         }
+        if ($this->thumbnail) {
+            $thumbnailPath = Yii::getAlias('@frontend/web/storage/thumbnail/') . $this->video_id . '.jpg';
+            if (!is_dir(dirname($thumbnailPath))) {
+                FileHelper::createDirectory(dirname($thumbnailPath));
+            }
+            $this->thumbnail->saveAs($thumbnailPath);
+        }
         return true;
+    }
+
+    public function getVideoLink()
+    {
+        return Yii::$app->params['frontendUrl'] . '/storage/videos/' . $this->video_id . '.mp4';
+    }
+
+    public function getThumbnailLink()
+    {
+        return $this->has_thumbnail
+        ? Yii::$app->params['frontendUrl'] . '/storage/thumbnail/' . $this->video_id . '.jpg'
+        : '';
+    }
+
+    public function getStatusLabels()
+    {
+        return [
+            self::STATUS_UNLISTED => 'Unlisted',
+            self::STATUS_PUBLISHED => 'Published',
+        ];
     }
 }

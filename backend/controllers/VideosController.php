@@ -73,8 +73,6 @@ class VideosController extends Controller
             return $this->redirect(['update', 'id' => $model->video_id]);
         }
 
-        // var_dump($model->errors);
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -91,8 +89,10 @@ class VideosController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->thumbnail = UploadedFile::getInstanceByName("thumbnail");
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->video_id]);
+            return $this->redirect(['update', 'id' => $model->video_id]);
         }
 
         return $this->render('update', [

@@ -13,7 +13,7 @@ $this->beginContent('@backend/views/layouts/base.php')
 
 <?php echo $this->render('_header'); ?>
 <main class="d-flex w-50">
-    <div class="content-wrapper p-3">
+    <div class="content-wrapper p-4">
         <?=Alert::widget()?>
         <?=$content?>
     </div>

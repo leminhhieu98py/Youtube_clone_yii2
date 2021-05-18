@@ -1,7 +1,10 @@
 <?php
 
+use backend\assets\TagsInputAsset;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+
+\backend\assets\TagsInputAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Videos */
@@ -11,19 +14,22 @@ use yii\helpers\Html;
 <div class="videos-form">
 
     <?php $form = ActiveForm::begin([
-    'options' => [
-        'enctype' => 'multipart/form-data',
-    ],
-]);?>
+        'options' => [
+            'enctype' => 'multipart/form-data',
+        ],
+    ]); ?>
 
     <div class="row">
         <div class="col-sm-8">
-            <?=$form->field($model, 'title')->textInput(['maxlength' => true])?>
-            <?=$form->field($model, 'description')->textarea(['rows' => 6])?>
-            <?=$form->field($model, 'tags')->textInput(['maxlength' => true])?>
+            <?php echo $form->errorSummary($model) ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'tags', [
+                'inputOptions' => ['data-role' => 'tagsinput']
+            ])->textInput(['maxlength' => true]) ?>
 
             <div class="form-group">
-                <label><?=$model->getAttributeLabel('thumbnail')?></label>
+                <label><?= $model->getAttributeLabel('thumbnail') ?></label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
                     <label class="custom-file-label" for="thumbnail">Choose file</label>
@@ -33,8 +39,7 @@ use yii\helpers\Html;
         </div>
         <div class="col-sm-4">
             <div class="embed-responsive embed-responsive-16by9 mb-3">
-                <video class="embed-responsive-item" poster="<?=$model->getThumbnailLink()?>"
-                    src="<?=$model->getVideoLink()?>" controls></video>
+                <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?>" controls></video>
             </div>
             <div class="mb-3">
                 <div class="text-muted">Video Link:</div>
@@ -45,14 +50,14 @@ use yii\helpers\Html;
                 <?php echo $model->video_name ?>
             </div>
 
-            <?=$form->field($model, 'status')->dropDownList($model->getStatusLabels())?>
+            <?= $form->field($model, 'status')->dropDownList($model->getStatusLabels()) ?>
         </div>
     </div>
 
     <div class="form-group">
-        <?=Html::submitButton('Save', ['class' => 'btn btn-success'])?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end();?>
+    <?php ActiveForm::end(); ?>
 
 </div>

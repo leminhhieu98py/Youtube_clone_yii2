@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="videos-create">
 
-    <h1><?=Html::encode($this->title)?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="upload-icon">
@@ -21,17 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <br>
         <p class="m-0">Kéo và thả tệp video để tải lên</p>
         <p class="text-muted">Các video của bạn sẽ ở chế độ riêng tư cho đến khi bạn xuất bản.</p>
-
-        <?php \yii\bootstrap4\ActiveForm::begin([
-    'options' => ['enctype' => 'multipart/form-data'],
-])?>
-
+        <?php $form = \yii\bootstrap4\ActiveForm::begin([
+            'options' => [
+                'enctype' => 'multipart/form-data',
+                'class' => 'text-center'
+            ],
+        ]) ?>
         <button class="btn btn-primary btn-file">
             Select File
             <input type="file" id="videoFile" name="video">
         </button>
+        <p><?= $form->errorSummary($model) ?></p>
 
-        <?php \yii\bootstrap4\ActiveForm::end()?>
+        <?php \yii\bootstrap4\ActiveForm::end() ?>
 
     </div>
 

@@ -20,21 +20,49 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'formatter' => [
+            'class' => \yii\i18n\Formatter::class,
+            'timeZone' => 'Asia/Ho_Chi_Minh',
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'video_id',
-            'title',
-            'description:ntext',
-            'tags',
-            'status',
-            //'has_thumbnail',
-            //'video_name',
-            //'created_at',
-            //'updated_at',
-            //'created_by',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute' => 'title',
+                'content' => function ($model) {
+                    return $this->render(
+                        '_video_item',
+                        [
+                            'model' => $model,
+                        ]
+                    );
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'content' => function ($model) {
+                    return $model->getStatusLabels()[$model->status];
+                }
+            ],
+            'created_at:datetime',
+            'updated_at:datetime',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'delete' => function ($url) {
+                        return Html::a('<i class="fas fa-trash"></i>', $url, [
+                            'data-method' => 'post',
+                            'data-confirm' => 'Are you sure?'
+                        ]);
+                    },
+                    'update' => function ($url) {
+                        return Html::a('', $url);
+                    },
+                    'view' => function ($url) {
+                        return Html::a('', $url);
+                    },
+                ]
+            ],
         ],
     ]); ?>
 

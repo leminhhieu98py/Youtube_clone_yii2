@@ -8,8 +8,10 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => "iTube",
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => '/videos/index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -39,9 +41,11 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ]
     ],
     'params' => $params,
 ];

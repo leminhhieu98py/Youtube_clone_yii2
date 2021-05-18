@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\Videos;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -21,6 +22,15 @@ class VideosController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ], //more security -> only login person can be access and create
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -37,7 +47,9 @@ class VideosController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Videos::find(),
+            'query' => Videos::find()
+                ->creator(yii::$app->user->id)
+                ->latest(),
         ]);
 
         return $this->render('index', [

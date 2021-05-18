@@ -2,10 +2,12 @@
 
 namespace common\models;
 
+use Imagine\Image\Box;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\FileHelper;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "{{%videos}}".
@@ -69,6 +71,8 @@ class Videos extends \yii\db\ActiveRecord
             [['video_id'], 'unique'],
             ['has_thumbnail', 'default', 'value' => 0],
             ['status', 'default', 'value' => self::STATUS_UNLISTED],
+            ['thumbnail', 'image', 'minWidth' => 1280],
+            ['videos', 'file', 'extensions' => ['mp4']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -139,6 +143,10 @@ class Videos extends \yii\db\ActiveRecord
                 FileHelper::createDirectory(dirname($thumbnailPath));
             }
             $this->thumbnail->saveAs($thumbnailPath);
+            Image::getImagine()
+                ->open($thumbnailPath)
+                ->thumbnail(new Box(1280, 1280))
+                ->save();
         }
         return true;
     }
@@ -151,8 +159,8 @@ class Videos extends \yii\db\ActiveRecord
     public function getThumbnailLink()
     {
         return $this->has_thumbnail
-        ? Yii::$app->params['frontendUrl'] . '/storage/thumbnail/' . $this->video_id . '.jpg'
-        : '';
+            ? Yii::$app->params['frontendUrl'] . '/storage/thumbnail/' . $this->video_id . '.jpg'
+            : '';
     }
 
     public function getStatusLabels()
@@ -161,5 +169,17 @@ class Videos extends \yii\db\ActiveRecord
             self::STATUS_UNLISTED => 'Unlisted',
             self::STATUS_PUBLISHED => 'Published',
         ];
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $videoPath = Yii::getAlias('@frontend/web/storage/videos/' . $this->video_id . '.mp4');
+        unlink($videoPath);
+
+        $thumbnailPath = Yii::getAlias('@frontend/web/storage/thumbnail/') . $this->video_id . '.jpg';
+        if (file_exists($thumbnailPath)) {
+            unlink($thumbnailPath);
+        }
     }
 }

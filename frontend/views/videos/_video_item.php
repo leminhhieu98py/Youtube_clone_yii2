@@ -15,6 +15,6 @@ use yii\helpers\Url;
     <div class="card-body p-2">
         <h6 class="card-title m-0"><?= StringHelper::truncateWords($model->title, 10) ?></h6>
         <p class="text-muted card-text m-0"><?= $model->createdBy->username ?></p>
-        <p class="text-muted card-text m-0">140 views <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></p>
+        <p class="text-muted card-text m-0"><?= $model->getViews()->count() ?> views <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></p>
     </div>
 </div>

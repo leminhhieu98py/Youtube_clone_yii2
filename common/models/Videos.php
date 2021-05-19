@@ -73,7 +73,7 @@ class Videos extends \yii\db\ActiveRecord
             ['status', 'default', 'value' => self::STATUS_UNLISTED],
             ['thumbnail', 'image', 'minWidth' => 1280],
             ['videos', 'file', 'extensions' => ['mp4']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -104,7 +104,22 @@ class Videos extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    public function getViews()
+    {
+        return $this->hasMany(VideoView::class, ['video_id' => 'video_id']);
+    }
+
+    public function getLikes()
+    {
+        return $this->hasMany(VideoLike::class, ['video_id' => 'video_id'])->liked();
+    }
+
+    public function getDislikes()
+    {
+        return $this->hasMany(VideoLike::class, ['video_id' => 'video_id'])->disliked();
     }
 
     /**
@@ -181,5 +196,20 @@ class Videos extends \yii\db\ActiveRecord
         if (file_exists($thumbnailPath)) {
             unlink($thumbnailPath);
         }
+    }
+
+    public function isLikedBy($userID)
+    {
+        return VideoLike::find()
+            ->userIDvideoID($userID, $this->video_id)
+            ->liked()
+            ->one();
+    }
+    public function isDislikedBy($userID)
+    {
+        return VideoLike::find()
+            ->userIDvideoID($userID, $this->video_id)
+            ->disliked()
+            ->one();
     }
 }

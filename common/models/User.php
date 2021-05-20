@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -43,7 +44,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -109,7 +110,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -147,6 +149,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAuthKey()
     {
         return $this->auth_key;
+    }
+
+    public function getSubscribes()
+    {
+        return $this->hasMany(User::class, ['id' => 'user_id'])
+            ->viaTable('subscriber', ['channel_id' => 'id']);
     }
 
     /**
@@ -208,5 +216,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function isSubscribed($userID)
+    {
+        return Subscriber::find()
+            ->andWhere([
+                'channel_id' => $this->id,
+                'user_id' => $userID,
+            ])
+            ->one();
     }
 }

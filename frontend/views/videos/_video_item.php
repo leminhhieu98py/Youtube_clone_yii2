@@ -1,5 +1,6 @@
 <?php
 
+use common\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
@@ -14,7 +15,7 @@ use yii\helpers\Url;
     </a>
     <div class="card-body p-2">
         <h6 class="card-title m-0"><?= StringHelper::truncateWords($model->title, 10) ?></h6>
-        <p class="text-muted card-text m-0"><?= $model->createdBy->username ?></p>
+        <?php echo Html::channelLink($model->createdBy) ?>
         <p class="text-muted card-text m-0"><?= $model->getViews()->count() ?> views <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></p>
     </div>
 </div>

@@ -1,7 +1,12 @@
 <?php
+
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\models\Subscriber;
+use common\models\User;
+use common\models\Videos;
+use common\models\VideoView;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -19,7 +24,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
@@ -33,7 +38,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -60,7 +65,32 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $user = Yii::$app->user->identity;
+        $userID = $user->id;
+        $lastestVideo = Videos::find()
+            ->creator($userID)
+            ->latest()
+            ->limit(1)
+            ->one();
+
+        $numberOfView = VideoView::find()
+            ->alias('vv')
+            ->innerJoin(Videos::tableName() . 'v', 'v.video_id = vv.video_id')
+            ->andWhere(['v.created_by' => $userID])
+            ->count();
+
+        $numberOfSubscribers = $user->getSubscribes()->count();
+        $latestSubscribers = Subscriber::find()
+            ->andWhere(['channel_id' => $userID])
+            ->orderBy('created_at DESC')
+            ->limit(3)
+            ->all();
+        return $this->render('index', [
+            'latestVideo' => $lastestVideo,
+            'numberOfView' => $numberOfView,
+            'numberOfSubscribers' => $numberOfSubscribers,
+            'latestSubscribers' => $latestSubscribers,
+        ]);
     }
 
     /**

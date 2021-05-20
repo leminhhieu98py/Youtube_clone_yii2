@@ -19,7 +19,7 @@ class VideosController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['like', 'dislike'],
+                'only' => ['like', 'dislike', 'history'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -39,7 +39,7 @@ class VideosController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Videos::find()->published()->latest(),
+            'query' => Videos::find()->with('createdBy')->published()->latest(),
         ]);
 
         return $this->render('index', [
@@ -58,8 +58,17 @@ class VideosController extends Controller
         $videoView->user_id = Yii::$app->user->id;
         $videoView->created_at = time();
         $videoView->save();
+
+        $similarVideos = Videos::find()
+            ->published()
+            ->byKeyword($video->title)
+            ->andWhere(['NOT', ['video_id' => $id]])
+            ->limit(10)
+            ->all();
+
         return $this->render('view', [
-            'model' => $video
+            'model' => $video,
+            'similarVideos' => $similarVideos,
         ]);
     }
 
@@ -124,5 +133,53 @@ class VideosController extends Controller
         $videoLikeDislike->created_at = time();
         $videoLikeDislike->type = $type;
         $videoLikeDislike->save();
+    }
+
+    public function actionSearch()
+    {
+        $params = Yii::$app->request->get();
+        $keyword = $params['keyword'];
+        $query = Videos::find()
+            ->published()
+            ->latest();
+        if ($keyword != "") {
+            $query->byKeyword($keyword)
+                ->orderBy(
+                    "MATCH(title, tags, description) AGAINST (:keyword) DESC",
+                    ['keyword' => $keyword]
+                );
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+            ]);
+        } else {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+            ]);
+        }
+
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionHistory()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_view
+                    WHERE user_id = (:user_id)
+                    GROUP BY video_id) vv",
+                    'vv.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vv.max_date DESC'),
+        ]);
+
+        return $this->render('history', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\LoginForm;
 use common\models\Subscriber;
 use common\models\User;
+use common\models\VideoLike;
 use common\models\Videos;
 use common\models\VideoView;
 use Yii;
@@ -69,6 +70,7 @@ class SiteController extends Controller
         $userID = $user->id;
         $lastestVideo = Videos::find()
             ->creator($userID)
+            ->published()
             ->latest()
             ->limit(1)
             ->one();
@@ -80,6 +82,18 @@ class SiteController extends Controller
             ->count();
 
         $numberOfSubscribers = $user->getSubscribes()->count();
+        $totalLikes = VideoLike::find()
+            ->liked()
+            ->alias('vl')
+            ->innerJoin(Videos::tableName() . 'v', 'v.video_id = vl.video_id')
+            ->andWhere(['v.created_by' => $userID])
+            ->count();
+        $totalDislikes = VideoLike::find()
+            ->disliked()
+            ->alias('vl')
+            ->innerJoin(Videos::tableName() . 'v', 'v.video_id = vl.video_id')
+            ->andWhere(['v.created_by' => $userID])
+            ->count();
         $latestSubscribers = Subscriber::find()
             ->andWhere(['channel_id' => $userID])
             ->orderBy('created_at DESC')
@@ -90,6 +104,8 @@ class SiteController extends Controller
             'numberOfView' => $numberOfView,
             'numberOfSubscribers' => $numberOfSubscribers,
             'latestSubscribers' => $latestSubscribers,
+            'totalLikes' => $totalLikes,
+            'totalDislikes' => $totalDislikes,
         ]);
     }
 

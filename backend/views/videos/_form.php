@@ -11,7 +11,7 @@ use yii\helpers\Html;
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
-<div class="videos-form">
+<div class="videos-form m-4">
 
     <?php $form = ActiveForm::begin([
         'options' => [
@@ -20,7 +20,7 @@ use yii\helpers\Html;
     ]); ?>
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-8 pr-4 video-details">
             <?php echo $form->errorSummary($model) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -37,7 +37,7 @@ use yii\helpers\Html;
             </div>
 
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 pl-4" style="margin-top: 38px;">
             <div class="embed-responsive embed-responsive-16by9 mb-3">
                 <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?>" controls></video>
             </div>
@@ -55,7 +55,9 @@ use yii\helpers\Html;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', [
+            'class' => 'btn btn-success',
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

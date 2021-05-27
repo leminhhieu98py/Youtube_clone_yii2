@@ -1,9 +1,15 @@
 <?php
+
 namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use Imagine\Image\Box;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
+
 
 /**
  * Signup form
@@ -13,6 +19,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $avatar;
+
 
 
     /**
@@ -34,6 +42,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            // // avatar must be an img
+            ['avatar', 'image', 'minWidth' => 360],
         ];
     }
 
@@ -47,15 +58,27 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->avatar = UploadedFile::getInstanceByName("SignupForm[avatar]");
+        if ($user->avatar) {
+            $user->has_avatar = true;
+            $avatarPath = Yii::getAlias('@frontend/web/storage/avatar/') . $this->username . '.jpg';
+            if (!is_dir(dirname($avatarPath))) {
+                FileHelper::createDirectory(dirname($avatarPath));
+            }
+            $user->avatar->saveAs($avatarPath);
+            Image::getImagine()
+                ->open($avatarPath)
+                ->thumbnail(new Box(360, 360))
+                ->save();
+        }
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         return $user->save() && $this->sendEmail($user);
-
     }
 
     /**

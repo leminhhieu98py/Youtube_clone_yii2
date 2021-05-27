@@ -17,6 +17,8 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $verification_token
  * @property string $email
+ * @property img $avatar
+ * @property boolean $hasAvatar
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
@@ -28,7 +30,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
-
+    public $avatar;
+    public $hasAvatar;
 
     /**
      * {@inheritdoc}
@@ -155,6 +158,13 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(User::class, ['id' => 'user_id'])
             ->viaTable('subscriber', ['channel_id' => 'id']);
+    }
+
+    public function getAvatarLink()
+    {
+        return $this->has_avatar
+            ? Yii::$app->params['frontendUrl'] . '/storage/avatar/' . $this->username . '.jpg'
+            : 'https://lh3.googleusercontent.com/proxy/eLIeK_bFyS5yHkFsuWx7jrrUcQCUT2K3SIV1Z1ZzufZa3ChUx3fDqFhFD1CrhUjxLeMPbeej5dsBzFKEAHXxlpe7AaKngIQ';
     }
 
     /**

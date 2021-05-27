@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/videos.js',
+        '/js/confirmSwal.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

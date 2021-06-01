@@ -15,7 +15,8 @@ class Html
                 'username' => $user->username,
             ]),
             [
-                'class' => 'text-dark'
+                'class' => 'text-dark',
+                'style' => 'text-decoration: none;'
             ]
         );
     }

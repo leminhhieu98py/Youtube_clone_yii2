@@ -68,17 +68,17 @@ class ChannelController extends Controller
             $subscriber->user_id = $userID;
             $subscriber->created_at = time();
             $subscriber->save();
-            Yii::$app->mailer->compose([
-                'html' => 'subscriber-html',
-                'text' => 'subscriber-text'
-            ], [
-                'channel' => $channel,
-                'user' => Yii::$app->user->identity,
-            ])
-                ->setFrom(Yii::$app->params['senderEmail'])
-                ->setTo($channel->email)
-                ->setSubject('You have a new subscriber. Keep moving <3')
-                ->send();
+            // Yii::$app->mailer->compose([
+            //     'html' => 'subscriber-html',
+            //     'text' => 'subscriber-text'
+            // ], [
+            //     'channel' => $channel,
+            //     'user' => Yii::$app->user->identity,
+            // ])
+            //     ->setFrom(Yii::$app->params['senderEmail'])
+            //     ->setTo($channel->email)
+            //     ->setSubject('You have a new subscriber. Keep moving <3')
+            //     ->send();
         } else {
             $subscriber->delete();
         }

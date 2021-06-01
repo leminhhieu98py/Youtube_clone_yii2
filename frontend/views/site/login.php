@@ -6,36 +6,68 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login w-50">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
+<div class="d-flex justify-content-center">
+    <div class="site-login">
+        <div class="login-image-wrapper">
+            <figure>
+                <img src="https://thichtrongcay.com.vn/assets/img/login.png" alt="">
+            </figure>
+        </div>
+        <div class="login-form">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+            <h1 class="form-title"><?= Html::encode($this->title) ?></h1>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'username', [
+                'inputOptions' => [
+                    'placeholder' => 'Your username...',
+                ],
+            ])->label('<i class="fas fa-user"></i>')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password', [
+                'inputOptions' => [
+                    'placeholder' => 'Your password...',
+                ],
+            ])->passwordInput()->label('<i class="fas fa-unlock-alt"></i>') ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-            <div style="color:#999;margin:1em 0">
+            <p style="font-size:14px;color:#999;margin:1em 0">
                 If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
                 <br>
                 Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
-            </div>
+            </p>
 
             <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Login', ['class' => 'btn-submit', 'name' => 'login-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
+        </div>
+        <div class="d-flex">
+            <a href=" <?= Url::to('signup') ?>" class="login-image-link">Create an account</a>
+            <div class="social-login">
+                <span class="social-label">Or login with</span>
+                <ul class="socials">
+                    <li>
+                        <a href="">
+                            <i class="display-flex-center zmdi zmdi-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="display-flex-center zmdi zmdi-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="display-flex-center zmdi zmdi-google"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -9,10 +9,10 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 ?>
-<div class="row">
+<div class="row m-4 ml-5">
     <div class="col-sm-8">
         <div class="embed-responsive embed-responsive-16by9 mb-3">
-            <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?> " controls></video>
+            <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?>" autoplay controls></video>
         </div>
         <h6><?= $model->title ?></h6>
         <div class="d-flex align-items-center justify-content-between">
@@ -32,16 +32,34 @@ use yii\widgets\Pjax;
             </div>
         </div>
         <hr>
-        <div class="col-sm-8 ml-5">
-            <?php echo Html::channelLink($model->createdBy) ?>
-            <p><?= $model->description ?></p>
+        <div class="row m-0 w-100 d-flex flex-wrap">
+            <div class="view-img-wrapper d-flex justify-content-center col-1 p-0">
+                <img src="<?= $model->createdBy->getAvatarLink() ?>" alt="avatar">
+            </div>
+            <div class="col-2">
+                <div>
+                    <?php echo Html::channelLink($model->createdBy) ?>
+                </div>
+                <p class="text-muted"><?= $model->createdBy->getSubscribes()->count() ?> <?= ($model->createdBy->getSubscribes()->count() > 1) ? 'subscribers' : 'subscriber' ?></p>
+            </div>
+            <div class="col-9 text-right p-0">
+                <?php Pjax::begin() ?>
+                <?php echo $this->render('../channel/_subscribe', [
+                    'channel' => $model->createdBy,
+                ]) ?>
+                <?php Pjax::end() ?>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-11 mt-3">
+                <p><?= $model->description ?></p>
+            </div>
         </div>
     </div>
     <div class="col-sm-4">
         <?php
         foreach ($similarVideos as $similarVideo) {
         ?>
-            <div class="media">
+            <div class="media animate__animated animate__fadeInUp">
                 <a class="mb-4 mr-2" href="<?= Url::to(['/videos/view', 'id' => $similarVideo->video_id]) ?>">
                     <div class="embed-responsive embed-responsive-16by9" style="min-width: 200px; max-width: 300px;">
                         <video style="min-height: 100px;" class="embed-responsive-item" poster="<?= $similarVideo->getThumbnailLink() ?>" src="<?= $similarVideo->getVideoLink() ?> "></video>

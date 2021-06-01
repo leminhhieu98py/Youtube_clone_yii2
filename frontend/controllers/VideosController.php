@@ -52,7 +52,7 @@ class VideosController extends Controller
         $params = yii::$app->request->get();
         $id = $params['id'];
         $video = $this->findVideo($id);
-        $this->layout = 'authentication';
+        $this->layout = 'view';
         $videoView = new VideoView();
         $videoView->video_id = $id;
         $videoView->user_id = Yii::$app->user->id;

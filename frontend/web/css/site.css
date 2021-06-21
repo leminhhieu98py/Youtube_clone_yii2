@@ -426,6 +426,26 @@ aside .nav-pills .nav-link.active {
   animation-duration: 2s;
 }
 
+.comment-count {
+  font-size: 20px;
+}
+
+.comment-avatar img {
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#comment-input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #909090;
+}
+
+#comment-input:focus {
+  border-bottom: 2px solid #000;
+}
+
 /* CHANNEL ------- ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------- */
 .btn-subcribe {

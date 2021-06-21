@@ -122,6 +122,11 @@ class Videos extends \yii\db\ActiveRecord
         return $this->hasMany(VideoLike::class, ['video_id' => 'video_id'])->disliked();
     }
 
+    public function getComments()
+    {
+        return $this->hasMany(VideoComment::class, ['video_id' => 'video_id']);
+    }
+
     /**
      * {@inheritdoc}
      * @return \common\models\query\VideosQuery the active query used by this AR class.

@@ -44,6 +44,10 @@ $this->title = 'iTube - Share to be shared';
                     <p class="text-muted m-1 col-9 text-left p-0">Views </p>
                     <div class="col-3 text-muted text-right"><?= $latestVideo->getViews()->count() ?></div>
                 </div>
+                <div class="col-12 d-flex p-0">
+                    <p class="text-muted m-1 col-9 text-left p-0">Comments </p>
+                    <div class="col-3 text-muted text-right"><?= $latestVideo->getComments()->count() ?></div>
+                </div>
                 <a href="<?= Url::to(['/videos/update', 'id' => $latestVideo->video_id]) ?>" class="btn btn-primary mt-3">Edit Video</a>
             </div>
         </div>
@@ -59,6 +63,10 @@ $this->title = 'iTube - Share to be shared';
                 <div class="col-12 d-flex p-0">
                     <p class="text-muted col-9 text-left p-0" style="margin: 4px 0;">Total views </p>
                     <div class="col-3 text-muted text-right"><?= $numberOfView ?></div>
+                </div>
+                <div class="col-12 d-flex p-0">
+                    <p class="text-muted col-9 text-left p-0" style="margin: 4px 0;">Total comments </p>
+                    <div class="col-3 text-muted text-right"><?= $numberOfComment ?></div>
                 </div>
                 <div class="col-12 d-flex p-0">
                     <p class="text-muted col-9 text-left p-0" style="margin: 4px 0;">Total likes </p>

@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\LoginForm;
 use common\models\Subscriber;
 use common\models\User;
+use common\models\VideoComment;
 use common\models\VideoLike;
 use common\models\Videos;
 use common\models\VideoView;
@@ -81,6 +82,12 @@ class SiteController extends Controller
             ->andWhere(['v.created_by' => $userID])
             ->count();
 
+        $numberOfComment = VideoComment::find()
+            ->alias('vv')
+            ->innerJoin(Videos::tableName() . 'v', 'v.video_id = vv.video_id')
+            ->andWhere(['v.created_by' => $userID])
+            ->count();
+
         $numberOfSubscribers = $user->getSubscribes()->count();
         $totalLikes = VideoLike::find()
             ->liked()
@@ -102,6 +109,7 @@ class SiteController extends Controller
         return $this->render('index', [
             'latestVideo' => $lastestVideo,
             'numberOfView' => $numberOfView,
+            'numberOfComment' => $numberOfComment,
             'numberOfSubscribers' => $numberOfSubscribers,
             'latestSubscribers' => $latestSubscribers,
             'totalLikes' => $totalLikes,

@@ -7,14 +7,25 @@ use common\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use common\models\User;
 
+$user = User::find()
+    ->andWhere(['id' => Yii::$app->user->identity->id])
+    ->one();
 ?>
+<input type="hidden" class="baseUrl" value="<?= Url::base() . '/' . Yii::$app->controller->id ?>">
 <div class="row m-4 ml-5">
+
+    <!-- Left side -->
     <div class="col-sm-8">
+
+        <!-- Main video -->
         <div class="embed-responsive embed-responsive-16by9 mb-3">
             <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?>" autoplay controls></video>
         </div>
-        <h6><?= $model->title ?></h6>
+
+        <!-- Title, like, dislike,... -->
+        <h5><?= $model->title ?></h5>
         <div class="d-flex align-items-center justify-content-between">
             <div class="">
                 <p class="text-muted m-0"><?= $model->getViews()->count() ?> views • <?= Yii::$app->formatter->asDate($model->created_at) ?></p>
@@ -32,6 +43,8 @@ use yii\widgets\Pjax;
             </div>
         </div>
         <hr>
+
+        <!-- channel and description -->
         <div class="row m-0 w-100 d-flex flex-wrap">
             <div class="view-img-wrapper d-flex justify-content-center col-1 p-0">
                 <img src="<?= $model->createdBy->getAvatarLink() ?>" alt="avatar">
@@ -54,7 +67,28 @@ use yii\widgets\Pjax;
                 <p><?= $model->description ?></p>
             </div>
         </div>
+
+        <!-- Comment -->
+        <hr>
+        <div class="m-0 w-100">
+            <?= $this->render('_comment_count', [
+                'comments' => $comments
+            ]); ?>
+            <div class="d-flex align-items-center mb-3">
+                <div class="m-3 comment-avatar">
+                    <img src="<?= $user->getAvatarLink() ?>" alt="avatar">
+                </div>
+                <div id="comment-input-wrapper" class="w-100">
+                    <input class="w-100" type="text" placeholder="Add a public comment..." id="comment-input" data-videoid="<?= $model->video_id ?>">
+                </div>
+            </div>
+        </div>
+        <div class="m-0 w-100 comment-wrapper">
+
+        </div>
     </div>
+
+    <!-- Right side -->
     <div class="col-sm-4">
         <?php
         foreach ($similarVideos as $similarVideo) {

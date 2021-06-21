@@ -1,0 +1,1 @@
+<input type="text" placeholder="Add a public comment..." id="comment-input" data-videoid="<?= $model->video_id ?>">

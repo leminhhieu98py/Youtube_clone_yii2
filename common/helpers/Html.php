@@ -16,7 +16,7 @@ class Html
             ]),
             [
                 'class' => 'text-dark',
-                'style' => 'text-decoration: none;'
+                'style' => 'text-decoration: none; font-weight: 500;'
             ]
         );
     }

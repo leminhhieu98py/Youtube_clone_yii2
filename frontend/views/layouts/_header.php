@@ -19,10 +19,6 @@ $currentRoute = '/' . $controller . '/' . $action;
 
     <!-- Middle -->
     <div class="col-6">
-        <!-- <form class="form-inline">
-            <input class="form-control mr-sm-2 input-search-bar" type="search" placeholder="Search...">
-            <button class="studio-search-btn btn my-2 my-sm-0">Search</button>
-        </form> -->
         <form action="<?php echo Url::to(['/videos/search']) ?>" class="form-inline">
             <input class="form-control mr-sm-2 input-search-bar" type="search" placeholder="Search..." name="keyword" value="<?= Yii::$app->request->get('keyword') ?>">
             <button class="btn studio-search-btn my-2 my-sm-0">Search</button>

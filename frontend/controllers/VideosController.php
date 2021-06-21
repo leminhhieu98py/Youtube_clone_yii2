@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\VideoComment;
 use common\models\VideoLike;
 use common\models\Videos;
 use common\models\VideoView;
@@ -19,7 +20,7 @@ class VideosController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['like', 'dislike', 'history'],
+                'only' => ['like', 'dislike', 'history', 'checkcomment', 'comment'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -31,7 +32,7 @@ class VideosController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'like' => ['post'],
-                    'dislike' => ['post']
+                    'dislike' => ['post'],
                 ]
             ]
         ];
@@ -52,6 +53,9 @@ class VideosController extends Controller
         $params = yii::$app->request->get();
         $id = $params['id'];
         $video = $this->findVideo($id);
+        $videoComments = VideoComment::find()
+            ->videoID($id)
+            ->all();
         $this->layout = 'view';
         $videoView = new VideoView();
         $videoView->video_id = $id;
@@ -69,6 +73,7 @@ class VideosController extends Controller
         return $this->render('view', [
             'model' => $video,
             'similarVideos' => $similarVideos,
+            'comments' => $videoComments,
         ]);
     }
 
@@ -181,5 +186,46 @@ class VideosController extends Controller
         return $this->render('history', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionCheckcomment()
+    {
+    }
+    public function actionComment()
+    {
+        $params = yii::$app->request->post();
+        $id = $params['videoID'];
+        $video = $this->findVideo($id);
+        $content = $params['content'];
+        $userID = Yii::$app->user->id;
+        $this->saveComment($id, $userID, $content);
+        return $this->renderPartial('_comment_input', [
+            'model' => $video
+        ]);
+    }
+
+    public function actionDisplaycomments()
+    {
+        $params = yii::$app->request->post();
+        $id = $params['videoID'];
+        $video = $this->findVideo($id);
+        $videoComments = VideoComment::find()
+            ->videoID($id)
+            ->latest()
+            ->all();
+        return $this->renderPartial('_comments', [
+            'comments' => $videoComments,
+            'model' => $video,
+        ]);
+    }
+
+    protected function saveComment($videoID, $userID, $content)
+    {
+        $videoComment = new VideoComment();
+        $videoComment->video_id = $videoID;
+        $videoComment->user_id = $userID;
+        $videoComment->created_at = time();
+        $videoComment->content = $content;
+        $videoComment->save();
     }
 }

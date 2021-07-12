@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Videos */
 
-$this->title = 'Video details';
+$this->title = 'studio.iTube - Upload Video details';
 $this->params['breadcrumbs'][] = ['label' => 'Videos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->video_id]];
 $this->params['breadcrumbs'][] = 'Update';

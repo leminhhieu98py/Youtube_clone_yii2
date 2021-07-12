@@ -6,15 +6,23 @@ use yii\helpers\Url;
 $controller = Yii::$app->controller->id;
 $action = Yii::$app->controller->action->id;
 $currentRoute = '/' . $controller . '/' . $action;
-$user = User::find()
-    ->andWhere(['id' => Yii::$app->user->identity->id])
-    ->one();
+if (isset(Yii::$app->user->identity->id)) {
+    $user = User::find()
+        ->andWhere(['id' => Yii::$app->user->identity->id])
+        ->one();
+}
+
 ?>
-<aside>
+<aside class="main-side-bar">
     <div class="d-flex flex-column nav-pills">
         <div data-route="<?= $currentRoute ?>" class="aside-user-profile-wrapper">
             <div class="text-center m-3">
-                <img src="<?= $user->getAvatarLink() ?>" alt="avatar">
+                <img src="<?php
+                            if (isset($user)) {
+                                echo $user->getAvatarLink();
+                            } else {
+                                echo "https://lh3.googleusercontent.com/proxy/nO0hrtMIkXkvSRHr8AUcHtXYaz1iCuwGRtO__amTtwwVmouJsCcvvyqGlgR38uBoi5v8kxJnZj0N41O461nBVch1e7lczD4";
+                            }  ?>" alt="avatar">
             </div>
             <div class="text-center">
                 <div class="font-weight-bold">Your Channel</div>

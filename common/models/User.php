@@ -164,7 +164,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->has_avatar
             ? Yii::$app->params['frontendUrl'] . '/storage/avatar/' . $this->username . '.jpg'
-            : 'https://lh3.googleusercontent.com/proxy/eLIeK_bFyS5yHkFsuWx7jrrUcQCUT2K3SIV1Z1ZzufZa3ChUx3fDqFhFD1CrhUjxLeMPbeej5dsBzFKEAHXxlpe7AaKngIQ';
+            : 'https://lh3.googleusercontent.com/proxy/nO0hrtMIkXkvSRHr8AUcHtXYaz1iCuwGRtO__amTtwwVmouJsCcvvyqGlgR38uBoi5v8kxJnZj0N41O461nBVch1e7lczD4';
     }
 
     /**

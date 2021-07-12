@@ -9,9 +9,13 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use common\models\User;
 
-$user = User::find()
-    ->andWhere(['id' => Yii::$app->user->identity->id])
-    ->one();
+$this->title = "iTube - $model->title";
+
+if (isset(Yii::$app->user->identity->id)) {
+    $user = User::find()
+        ->andWhere(['id' => Yii::$app->user->identity->id])
+        ->one();
+}
 ?>
 <input type="hidden" class="baseUrl" value="<?= Url::base() . '/' . Yii::$app->controller->id ?>">
 <div class="row m-4 ml-5">
@@ -76,7 +80,12 @@ $user = User::find()
             ]); ?>
             <div class="d-flex align-items-center mb-3">
                 <div class="m-3 comment-avatar">
-                    <img src="<?= $user->getAvatarLink() ?>" alt="avatar">
+                    <img src="<?php
+                                if (isset($user)) {
+                                    echo $user->getAvatarLink();
+                                } else {
+                                    echo "https://lh3.googleusercontent.com/proxy/nO0hrtMIkXkvSRHr8AUcHtXYaz1iCuwGRtO__amTtwwVmouJsCcvvyqGlgR38uBoi5v8kxJnZj0N41O461nBVch1e7lczD4";
+                                }  ?>" alt="avatar">
                 </div>
                 <div id="comment-input-wrapper" class="w-100">
                     <input class="w-100" type="text" placeholder="Add a public comment..." id="comment-input" data-videoid="<?= $model->video_id ?>">

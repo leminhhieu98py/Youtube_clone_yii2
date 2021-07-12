@@ -16,7 +16,8 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/videos.js',
-        '/js/confirmSwal.js',
+        'js/confirmSwal.js',
+        'js/popper.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

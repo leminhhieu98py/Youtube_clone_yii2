@@ -8,7 +8,7 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Login';
+$this->title = 'iTube - Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="d-flex justify-content-center">

@@ -13,11 +13,17 @@ class Html
             Url::to([
                 '/channel/view',
                 'username' => $user->username,
+                'page' => 'home',
             ]),
             [
                 'class' => 'text-dark',
                 'style' => 'text-decoration: none; font-weight: 500;'
             ]
         );
+    }
+
+    public static function channelName($user)
+    {
+        return $user->username;
     }
 }

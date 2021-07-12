@@ -1,12 +1,13 @@
 <?php
 
+use Codeception\Lib\Di;
 use common\helpers\Html;
 use common\models\User;
 use common\models\Videos;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
-$this->title = 'iTube - Share to be shared';
+$this->title = 'studio.iTube - Share your whole world';
 /** @var $latestVideo common\models\video */
 /** @var $numberOfVier integer */
 /** @var $numberOfSubscribers integer */
@@ -56,7 +57,7 @@ $this->title = 'iTube - Share to be shared';
                 <h5 class="mb-3">Channel analytics</h5>
                 <div class="col-12 p-0">
                     <div class="text-muted col-9 text-left p-0 m-0">Current subscribers</div>
-                    <div class="col-3 p-0" style="font-size: 24px;"><?= $latestVideo->getViews()->count() ?></div>
+                    <div class="col-3 p-0" style="font-size: 24px;"><?= count($latestSubscribers) ?></div>
                 </div>
                 <hr class="mt-4 mb-2" style="color: rgb(229,229,229)">
                 <h6 class="mb-3">Summary</h6>
@@ -80,10 +81,17 @@ $this->title = 'iTube - Share to be shared';
                 <h6 class="mb-3">New Subscribers</h6>
                 <div class="col-12 p-0">
                     <?php
-                    foreach ($latestSubscribers as $latestSubscriber) {
+                    if (count($latestSubscribers) == 0) {
+                        echo "No one has subscribed your channel. Share more videos for more subscribers <3";
+                    } else {
+                        foreach ($latestSubscribers as $key => $latestSubscriber) {
+                            if ($key > 2) {
+                                break;
+                            }
                     ?>
-                        <div><?= Html::channelLink($latestSubscriber->user) ?></div>
+                            <div><?= Html::channelLink($latestSubscriber->user) ?></div>
                     <?php
+                        }
                     }
                     ?>
                 </div>

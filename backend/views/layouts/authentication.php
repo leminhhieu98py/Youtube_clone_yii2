@@ -11,7 +11,7 @@ $this->beginContent('@backend/views/layouts/base.php')
 ?>
 
 
-<main class="d-flex">
+<main class="d-flex justify-content-center">
     <div class="content-wrapper p-4">
         <?= Alert::widget() ?>
         <?= $content ?>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style media="all" type="text/css" data-embed>
+        .outter-wrapper {
+            padding-top: 40px;
+            width: 600px;
+            color: #000;
+            margin-left: 20%;
+        }
+
+        table {
+            width: 100%;
+            color: #000;
+        }
+
+        .table-container {
+            width: 100%;
+            color: #000;
+            border-collapse: collapse;
+            vertical-align: top;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .big-logo {
+            height: 80px;
+        }
+
+        .slogan-wrapper {
+            width: 24%;
+            color: #000;
+        }
+
+        .slogan-wrapper img {
+            height: 30px;
+
+        }
+
+        .contact-footer-wrapper {
+            width: 32%;
+            height: 100%;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .vertical-align-middle {
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .slogan-table {
+            margin: 5% 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #000;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #000;
+        }
+
+        td,
+        p,
+        li {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            vertical-align: top;
+            color: #000;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .td-light-grey,
+        .td-white {
+            width: 48%;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        .td-light-grey {
+            background-color: #F3F3F3;
+        }
+
+        .table-light-blue {
+            display: inline-block;
+            width: 48%;
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .td-70 {
+            width: 68%;
+        }
+
+        .td-30 {
+            width: 28%;
+        }
+
+        .activate-account-btn {
+            padding: 10px 15px;
+            background-color: #CFE2F3;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        @media screen and (max-width: 599px) {
+            .outter-wrapper {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .big-logo {
+                height: 40px;
+            }
+
+            .slogan-wrapper {
+                height: 15px;
+                width: 22%;
+                font-size: 8px;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            .slogan-wrapper img {
+                display: block;
+                height: 15px;
+                margin-right: 0;
+                margin-left: 40px;
+                margin-bottom: 5px;
+            }
+
+            .slogan-table {
+                margin: 5% 0;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            h4 {
+                font-size: 14px;
+            }
+
+            td,
+            p,
+            li {
+                font-size: 12px;
+            }
+
+            .table-light-blue {
+                width: 100%;
+            }
+
+            .contact-footer-wrapper>span img {
+                margin-bottom: 5px;
+            }
+
+            .contact-footer-text,
+            .slogan-header-text {
+                display: block;
+            }
+
+            .activate-account-btn {
+                padding: 4px 8px;
+                border-radius: 3px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outter-wrapper">
+        <div class="table-container">
+            <!-- logo -->
+
+            <table class="table-container">
+                <tr>
+                    <td class="text-center">
+                        <img class="big-logo" src="https://dev.toca.store/images/email/logo.png" alt="">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <!-- slogan -->
+            <table class="table-container slogan-table">
+                <tr>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        <img src="https://dev.toca.store/images/email/airplane.png">
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        <img src="https://dev.toca.store/images/email/shield.png">
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        <img src="https://dev.toca.store/images/email/headphone.png">
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        <img src="https://dev.toca.store/images/email/credit-card.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        Nhanh chóng
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        An toàn
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        Tiện lợi
+                    </td>
+                    <td class="slogan-wrapper" style="text-align: center;">
+                        Minh bạch
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <table class="table-container">
+                <h3 class="text-center">
+                    <strong>Đơn hàng ABCXYZ đã được tạo thành công</strong>
+                </h3>
+                <tr>
+                    <td>
+                        Phan Minh Thiện ơi, Toca hiện đã tiếp nhận và xử lý đơn hàng ABCXYZ của bạn.
+                        <br>
+                        Vì luôn có nhiều sự lựa chọn ngoài kia, Toca rất trân trọng và chân thành cảm ơn khi bạn đã
+                        chọn sử dụng dịch vụ tại Toca.store.
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <hr>
+            <br>
+
+            <!-- content -->
+            <div>
+                <h4 class="text-center">Thông tin về đơn hàng</h4>
+                <!-- <tr style="margin: 20px 0;"> -->
+                <p>
+                    <strong>Thông tin chung</strong>
+                </p>
+                <table class="table-container">
+                    <tr>
+                        <td class="td-light-grey"><strong>Mã
+                                đơn
+                                hàng:</strong></td>
+                        <td class="td-white" style="color: transparent;">.</td>
+                    </tr>
+                    <tr>
+                        <td class="td-light-grey"><strong>Ngày
+                                đặt
+                                hàng:</strong></td>
+                        <td class="td-white">22/06/2021 01:25:29 PM</td>
+                    </tr>
+                    <tr>
+                        <td class="td-light-grey"><strong>Tổng
+                                giá trị
+                                đơn hàng khi về Việt Nam:</strong></td>
+                        <td class="td-white" style="color: #FF0000;">1,092,000đ</td>
+                    </tr>
+                    <tr>
+                        <td class="td-light-grey"><strong>Hình
+                                thức thanh
+                                toán:</strong></td>
+                        <td class="td-white">Thanh toán trực tuyến</td>
+                    </tr>
+                    <tr>
+                        <td class="td-light-grey"><strong>Trạng
+                                thái
+                                thanh toán:</strong></td>
+                        <td class="td-white">Chưa thanh toán</td>
+                    </tr>
+                    <tr>
+                        <td class="td-light-grey"><strong>Trạng
+                                thái đơn
+                                hàng:</strong></td>
+                        <td class="td-white">Chưa thanh toán</td>
+                    </tr>
+                </table>
+                <br>
+                <hr>
+                <br>
+                <div class="table-container" style="background-color: #DDE9FF;">
+                    <div class="table-light-blue">
+                        <p style="width: 100%"><strong>Thông tin đặt hàng</strong></p>
+                        <table class="table-container">
+                            <tr>
+                                <td style="width: 35%;">Họ và tên</td>
+                                <td style="width: 60%;">Phan Minh Thiện</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%;">Email</td>
+                                <td style="width: 60%;">thien.phan@sbp.com.vn</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%;">Điện thoại</td>
+                                <td style="width: 60%;">0978140883</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="table-light-blue">
+                        <p style="width: 100%"><strong>Thông tin nhận hàng</strong></p>
+                        <table style="width:100%; vertical-align: top;">
+                            <tr>
+                                <td style="width: 35%;">Họ và tên</td>
+                                <td style="width: 60%;">Phan Minh Thiện</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%;">Email</td>
+                                <td style="width: 60%;">thien.phan@sbp.com.vn</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%;">Điện thoại</td>
+                                <td style="width: 60%;">0978140883</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%;">Địa chỉ</td>
+                                <td style="width: 60%;">28/35b Đặng Văn Ngữ, phường 15, Phú Nhuận, TP.HCM</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <p class="td-light-grey" style="width: 100%;"><strong>Chi tiết đơn hàng</strong></p>
+                    <table class="table-container" style="background-color: #F3F3F3;">
+                        <tr>
+                            <td class="td-white td-70" style="width: 68%"><strong>Thông tin sản phẩm</strong></td>
+                            <td class="td-white td-30" style="width: 28%;"><strong>Thành tiền</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-white" td-70 style="width: 68%"><a
+                                    href="https://www.amazon.com/HedBanz-Game-Family-Guessing-vary/dp/B003AIM52A/ref=sr_1_1?dchild=1&keywords=Hedbanz%2C+Quick+Question+Family+Guessing+Game+for+Kids+and+Adults+%28Edition+May+Vary&qid=1625021802&sr=8-1">Hedbanz,
+                                    Quick Question Family Guessing Game for Kids and Adults (Edition May Vary)</a></td>
+                            <td class="td-white td-30" style="width: 28%;">505,000 đ</td>
+                        </tr>
+                        <tr>
+                            <td class="td-white" td-70 style="width: 68%"><a
+                                    href="https://www.amazon.com/dp/B00U26V9CU/ref=sspa_dk_detail_4?psc=1&pd_rd_i=B00U26V9CU&pd_rd_w=9PGKB&pf_rd_p=9637a9f6-047e-454c-a51a-e292699471e6&pd_rd_wg=5A9UD&pf_rd_r=4DXZ8FGR7BGVAC5DQ03B&pd_rd_r=6f4950d0-b84e-4060-93e5-45da31018e65&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFBMUk5RFJGNDZFMzEmZW5jcnlwdGVkSWQ9QTA2ODE4NDIzMDI2SFFXTU9SQjkxJmVuY3J5cHRlZEFkSWQ9QTA2ODUzMTczR1VFRkJXRjI0MklVJndpZGdldE5hbWU9c3BfZGV0YWlsJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">Catan
+                                    Board Game Extension Allowing a Total of 5 to 6 Players for The Catan Board Game |
+                                    Family Board Game | Board Game for Adults and Family | Adventure Board Game | Made
+                                    by Catan Studio</a></td>
+                            <td class="td-white td-30" style="width: 28%;">505,000 đ</td>
+                        </tr>
+                        <tr>
+                            <td class="td-light-grey td-70" style="width: 68%">Tổng giá trị đơn hàng</td>
+                            <td class="td-light-grey td-30" style="width: 28%;">1,092,000đ</td>
+                        </tr>
+                        <tr>
+                            <td class="td-light-grey td-70" style="width: 68%">Phí giao hàng trong nước</td>
+                            <td class="td-light-grey td-30" style="width: 28%;">50,000đ</td>
+                        </tr>
+                        <tr>
+                            <td class="td-light-grey td-70" style="width: 68%">Tổng giá trị đơn hàng khi về Việt Nam
+                            </td>
+                            <td class="td-light-grey td-30" style="color: #FF0000; width: 28%;">1,142,000đ</td>
+                        </tr>
+                        <tr>
+                            <td class="td-light-grey td-70" style="width: 68%">Phải thanh toán trước</td>
+                            <td class="td-light-grey td-30" style="color: #FF0000; width: 28%;">1,142,000đ</td>
+                        </tr>
+                    </table>
+                </div>
+                </table>
+                <br>
+                <hr>
+                <br>
+
+                <table class="table-container">
+                    <p>
+                        <strong style="text-decoration: underline;"><i>Hướng dẫn thanh toán:</i></strong>
+                        <br>
+                        Thực hiện <a href=""
+                            style="text-decoration: none; color: #000; background-color: #FFE599;">Thanh
+                            toán
+                            ngay</a> hoặc bạn có thể xem cách thức thanh toán chi tiết tại...
+                    </p>
+                    <p>
+                        Bạn cần được hỗ trợ ngay?
+                        <br>
+                        Hãy gọi ngay 1800.545480 hoặc gửi email đến info@toca.store . Đội ngũ Toca.store luôn sẵn sàng
+                        hỗ
+                        trợ.
+                    </p>
+                    <p>
+                        Để cập nhập những mã giảm giá dành riêng cho bạn, đăng ký theo dõi Toca.store tại.
+                        <br>
+                        <strong>Một lần nữa Toca cảm ơn bạn vì đã tin tưởng và rất hân hạnh được phục vụ.</strong>
+                    </p>
+                </table>
+            </div>
+            <br>
+            <hr>
+            <br>
+
+            <!-- footer -->
+            <div style="color: #000;">
+
+                <!-- contact -->
+                <table class="text-center table-container">
+                    <tr valign="top">
+                        <td class="contact-footer-wrapper" style="width: 32%">
+                            <img src="https://dev.toca.store/images/email/phone.png" alt=""
+                                style="height: 15px; border-right: 5px solid transparent;">
+                            </span>
+                            <span class="vertical-align-middle contact-footer-text">
+                                1800.545480
+                            </span>
+                        </td>
+                        <td class="contact-footer-wrapper" style="width: 32%">
+                            <img src="https://dev.toca.store/images/email/email.png" alt=""
+                                style="height: 15px; border-right: 5px solid transparent;">
+                            </span>
+                            <span class="vertical-align-middle contact-footer-text">
+                                info@toca.store
+                            </span>
+                        </td>
+                        <td class="contact-footer-wrapper" style="width: 32%">
+                            <a href="https://www.facebook.com/toca.store.vn">
+                                <img src="https://dev.toca.store/images/email/facebook.png" alt=""
+                                    style="height: 15px; border-right: 5px solid transparent;">
+                            </a>
+                            </span>
+                            <span class="vertical-align-middle contact-footer-text">
+                                Toca.store
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <!-- address -->
+                <p style="background-color: #F3F3F3; padding: 5px;">
+                    <strong style="margin: 10px;">Văn phòng Toca.store:</strong>
+                    <br>
+                    - 85 Thăng Long, phường 4, quận Tân Bình, Thành phố Hồ Chí Minh
+                </p>
+
+                <!-- Promotion -->
+                <p style="text-align: center; margin-top: 20px; width: 100%;">
+                    Bạn có thể: Dừng nhận tin khuyến mãi
+                    <br>
+                    Nhưng hãy ở lại nhé, Toca muốn gửi đến bạn rất nhiều mã giảm giá.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

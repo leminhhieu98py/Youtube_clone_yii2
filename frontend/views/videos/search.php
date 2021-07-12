@@ -1,6 +1,9 @@
 <?php
 
 use yii\widgets\ListView;
+
+$this->title = 'iTube - Found Videos';
+
 ?>
 <h1>Found Videos</h1>
 

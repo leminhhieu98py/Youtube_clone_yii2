@@ -33,15 +33,38 @@ class ChannelController extends Controller
     {
         $params = Yii::$app->request->get();
         $username = $params['username'];
+        $page = $params['page'];
         $channel = $this->findChannel($username);
-        $dataProvider = new ActiveDataProvider([
-            'query' => Videos::find()
+
+        if ($page == "home") {
+            $videos = Videos::find()
                 ->creator($channel->id)
-                ->published(),
-        ]);
+                ->published()
+                ->latest()
+                ->all();
+
+            return $this->render('channel', [
+                'channel' => $channel,
+                'videos' => $videos,
+                'page' => $page
+            ]);
+        }
+
+        if ($page == "videos") {
+            $videos = Videos::find()
+                ->creator($channel->id)
+                ->published()
+                ->latest()
+                ->all();
+            return $this->render('channel', [
+                'channel' => $channel,
+                'videos' => $videos,
+                'page' => $page
+            ]);
+        }
         return $this->render('channel', [
             'channel' => $channel,
-            'dataProvider' => $dataProvider
+            'page' => $page
         ]);
     }
 

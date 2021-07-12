@@ -52,16 +52,22 @@ $currentRoute = '/' . $controller . '/' . $action;
                 ->andWhere(['id' => Yii::$app->user->identity->id])
                 ->one();
         ?>
-            <div class="d-flex header-user-wrapper mr-2">
-                <img class="mr-2" src="<?= $user->getAvatarLink() ?>" alt="avatar">
-                <?php echo Html::channelLink($user) ?>
-            </div>
-            <a href="<?= Url::to(['/site/logout']) ?>" data-method="post" class="d-flex align-items-center text-dark" style="text-decoration: none;">
-                <div class="logout-wrapper d-flex align-items-center">
-                    <div class="logout">LOG OUT</div>
-                    <i class="fas fa-sign-out-alt"></i>
+
+
+            <div class="btn-group">
+                <div class="d-flex header-user-wrapper mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="mr-2" src="<?= $user->getAvatarLink() ?>" alt="avatar">
+                    <?php echo Html::channelLink($user) ?>
                 </div>
-            </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="<?= Url::to(['/channel/view', 'username' => $user->username]) ?>" style="text-decoration: none;"><button class="dropdown-item" type="button">My channel</button></a>
+                    <a href="" style="text-decoration: none;"><button class="dropdown-item" type="button">My iTube Studio</button></a>
+
+                    <a href="<?= Url::to(['/site/logout']) ?>" data-method="post" class="d-flex justify-content-between align-items-center text-dark dropdown-item" style="text-decoration: none;">
+                        Log out<i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
         <?php
         }
         ?>
@@ -69,35 +75,3 @@ $currentRoute = '/' . $controller . '/' . $action;
 </div>
 
 <?php
-// NavBar::begin([
-//     'brandLabel' => Yii::$app->name,
-//     'brandUrl' => Yii::$app->homeUrl,
-//     'options' => [
-//         'class' => 'shadow-sm navbar-expand-lg navbar-light bg-light',
-//     ],
-// ]);
-// if (Yii::$app->user->isGuest) {
-//     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-//     $menuItems[] = [
-//         'label' => 'Signup',
-//         'url' => ['/site/signup'],
-//     ];
-// } else {
-//     $menuItems[] = [
-//         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-//         'url' => ['/site/logout'],
-//         'linkOptions' => [
-//             'data-method' => 'POST',
-//         ],
-//     ];
-//     $url = \yii\helpers\Url::base();
-//     echo $url;
-// } 
-?>
-
-<?php
-// echo Nav::widget([
-//     'options' => ['class' => 'navbar-nav ml-auto'],
-//     'items' => $menuItems,
-// ]);
-// NavBar::end();

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /** @var $model \common\models\Videos */
 ?>
 
-<div class="card m-4 border-0 animate__jackInTheBox animate__animated" style="width: 20rem;">
+<div class="card col-3 border-0 mb-3 animate__jackInTheBox animate__animated">
     <a href="<?= Url::to(['/videos/view', 'id' => $model->video_id]) ?>">
         <div class="embed-responsive embed-responsive-16by9">
             <video class="embed-responsive-item" poster="<?= $model->getThumbnailLink() ?>" src="<?= $model->getVideoLink() ?>"></video>
@@ -19,7 +19,7 @@ use yii\helpers\Url;
         </div>
         <div class="col-10 p-0">
             <h6 class="card-title m-0"><?= StringHelper::truncateWords($model->title, 10) ?></h6>
-            <?php echo Html::channelLink($model->createdBy) ?>
+            <span data-container="body" data-toggle="tooltip" data-placement="top" title="<?= Html::channelName($model->createdBy) ?>"><?php echo Html::channelLink($model->createdBy) ?></span>
             <p class="text-muted card-text m-0"><?= $model->getViews()->count() ?> views <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></p>
         </div>
     </div>

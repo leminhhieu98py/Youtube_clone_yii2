@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider --> Videos */
 
-$this->title = 'Videos';
+$this->title = 'studio.iTube - Videos Management';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="videos-index">

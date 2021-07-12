@@ -41,9 +41,16 @@ main {
   flex: 1;
 }
 
-.content-wrapper {
+.main.content-wrapper {
   flex: 1;
   background-color: rgb(249, 249, 249);
+  margin-left: 250px;
+  transition: 0.5s ease-in-out;
+}
+
+.main.content-wrapper.active {
+  margin-left: 0px;
+  transition: 0.5s ease-in-out;
 }
 
 /* SIGN UP + LOGIN FORM ----------------------------------------------------------------------------------
@@ -200,8 +207,10 @@ figure {
 
 .header-site {
   padding: 12px 24px 12px 16px;
-  position: relative;
-  z-index: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: #fff;
 }
 
 .menu-icon-wrapper {
@@ -311,8 +320,20 @@ figure {
 ------------------------------------------------------------------------------------------------- */
 
 aside {
-  min-width: 250px;
+  width: 250px;
   border-right: 1px solid rgb(229, 229, 229);
+  position: fixed;
+  top: 64px;
+  left: 0px;
+  z-index: 1;
+  background-color: #fff;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.main-side-bar.active {
+  margin-left: -250px;
+  transition: 0.5s ease-in-out;
 }
 
 aside .nav-pills .nav-link {

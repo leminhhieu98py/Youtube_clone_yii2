@@ -6,6 +6,7 @@ use common\models\VideoComment;
 use common\models\VideoLike;
 use common\models\Videos;
 use common\models\VideoView;
+use common\models\VideoWatchLater;
 use yii\base\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -140,6 +141,16 @@ class VideosController extends Controller
         $videoLikeDislike->save();
     }
 
+    protected function saveWatchLater($videoID, $userID, $type)
+    {
+        $videoWatchLater = new VideoWatchLater();
+        $videoWatchLater->video_id = $videoID;
+        $videoWatchLater->user_id = $userID;
+        $videoWatchLater->created_at = time();
+        $videoWatchLater->type = $type;
+        $videoWatchLater->save();
+    }
+
     public function actionSearch()
     {
         $params = Yii::$app->request->get();
@@ -184,6 +195,69 @@ class VideosController extends Controller
         ]);
 
         return $this->render('history', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionLikedvideos()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_like
+                    WHERE user_id = (:user_id)
+                    AND type = 1
+                    GROUP BY video_id) vl",
+                    'vl.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vl.max_date DESC'),
+        ]);
+
+        return $this->render('likedVideos', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionWatchlater()
+    {
+        $params = yii::$app->request->get();
+        $id = $params['id'];
+        $video = $this->findVideo($id);
+        $userID = Yii::$app->user->id;
+        $videoWatchLater = VideoWatchLater::find()
+            ->userIDvideoID($userID, $id)
+            ->one();
+        if (!$videoWatchLater) {
+            $this->saveWatchLater($id, $userID, VideoWatchLater::TYPE_WATCH_LATER);
+        } elseif ($videoWatchLater->type === VideoWatchLater::TYPE_WATCH_LATER) {
+            $videoWatchLater->delete();
+        }
+        return $this->renderPartial('_buttons', [
+            'model' => $video,
+        ]);
+    }
+
+    public function actionWatchlatervideos()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_watch_later
+                    WHERE user_id = (:user_id)
+                    AND type = 1
+                    GROUP BY video_id) vwl",
+                    'vwl.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vwl.max_date DESC'),
+        ]);
+
+        return $this->render('likedVideos', [
             'dataProvider' => $dataProvider,
         ]);
     }

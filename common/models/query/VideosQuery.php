@@ -3,6 +3,7 @@
 namespace common\models\query;
 
 use common\models\Videos;
+use common\models\VideoView;
 
 /**
  * This is the ActiveQuery class for [[\common\models\Videos]].
@@ -43,6 +44,7 @@ class VideosQuery extends \yii\db\ActiveQuery
     {
         return $this->orderBy(['created_at' => SORT_DESC]);
     }
+
     public function published()
     {
         return $this->andWhere(['status' => Videos::STATUS_PUBLISHED]);

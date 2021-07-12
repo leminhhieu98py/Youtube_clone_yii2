@@ -22,6 +22,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+
     public function behaviors()
     {
         return [
@@ -104,7 +105,6 @@ class SiteController extends Controller
         $latestSubscribers = Subscriber::find()
             ->andWhere(['channel_id' => $userID])
             ->orderBy('created_at DESC')
-            ->limit(3)
             ->all();
         return $this->render('index', [
             'latestVideo' => $lastestVideo,

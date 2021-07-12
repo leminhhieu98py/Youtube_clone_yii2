@@ -65,10 +65,18 @@ main {
   flex: 1;
 }
 
-.content-wrapper {
+.main.content-wrapper {
   flex: 1;
   background-color: rgb(249, 249, 249);
+  margin-left: 250px;
+  transition: 0.5s ease-in-out;
 }
+
+.main.content-wrapper.active {
+  margin-left: 0px;
+  transition: 0.5s ease-in-out;
+}
+
 /* SIGN UP + LOGIN FORM ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------- */
 .site-signup,
@@ -237,8 +245,10 @@ figure {
 
 .header-site {
   padding: 12px 24px 12px 16px;
-  position: relative;
-  z-index: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: #fff;
 }
 
 .menu-icon-wrapper {
@@ -370,8 +380,20 @@ figure {
 ------------------------------------------------------------------------------------------------- */
 
 aside {
-  min-width: 250px;
+  width: 250px;
   border-right: 1px solid rgb(229, 229, 229);
+  position: fixed;
+  top: 64px;
+  left: 0px;
+  z-index: 1;
+  background-color: #fff;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+}
+
+.main-side-bar.active {
+  margin-left: -250px;
+  transition: 0.5s ease-in-out;
 }
 
 aside .nav-pills .nav-link {
@@ -448,6 +470,21 @@ aside .nav-pills .nav-link.active {
 
 /* CHANNEL ------- ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------- */
+.channel-wrapper {
+  margin: -24px;
+}
+
+.channel-banner {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-image: url("../storage/banner/banner_for_iTube.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .btn-subcribe {
   background-color: #b90000;
   text-decoration: none;
@@ -494,10 +531,6 @@ aside .nav-pills .nav-link.active {
   font-weight: 400;
 }
 
-/* .channel-creator-name a:hover {
-  text-decoration: none;
-} */
-
 .channel-subscriber-count {
   font-size: 14px;
   line-height: 1.5rem;
@@ -505,6 +538,123 @@ aside .nav-pills .nav-link.active {
   letter-spacing: 0.2px;
 }
 
-.channel-info-wrapper {
+.channel-info-wrapper,
+.channel-nav-bar {
   padding: 20px 50px;
+  background-color: #fff;
+}
+
+.channel-info-wrapper {
+  padding-bottom: 0px;
+}
+
+.channel-nav-bar {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #fff;
+}
+
+.channel-nav-bar > ul {
+  list-style-type: none;
+  margin-left: -40px;
+}
+
+.channel-nav-bar > ul > li .channel-nav-title {
+  color: #636363;
+  padding: 10px 32px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.channel-nav-bar > ul > li .channel-nav-title:hover {
+  color: #000;
+}
+.channel-nav-bar > ul > li .channel-nav-title.active {
+  color: #000;
+}
+.channel-nav-pad {
+  margin-top: 10px;
+  transition: 0.5s ease-in-out;
+  margin-top: -1px;
+  border-bottom: 3.5px solid transparent;
+  width: 0%;
+}
+.channel-nav-pad.active {
+  width: 100%;
+  border-bottom: 3.5px solid #606060;
+  transition: 0.5s ease-in-out;
+}
+
+/* Channel home */
+.channel-home-wrapper {
+  padding: 30px 50px 100px 50px;
+}
+.video-trend-title {
+  font-size: 18px;
+  margin-right: 20px;
+  font-weight: 500;
+}
+.play-all-btn {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  color: #606060;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.videos-slide-wrapper {
+  display: flex;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+  /* width: 140%; */
+  /* transform: translateX(-71.4285%); */
+}
+
+.video-card-channel {
+  width: 20%;
+  border: none;
+  background-color: #f1f1f1;
+  padding: 3px;
+}
+
+.next-videos-channel-btn,
+.previous-videos-channel-btn {
+  position: absolute;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  background-color: #fff;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 30%), 0 0 4px rgb(0 0 0 / 20%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-videos-channel-btn:active,
+.previous-videos-channel-btn:active {
+  background-color: #d3d3d3;
+}
+
+.popular-video-previous-btn {
+  top: 888px;
+  left: 280px;
+}
+
+.popular-video-next-btn {
+  top: 888px;
+  right: 30px;
+}
+
+.latest-video-previous-btn {
+  top: 1220px;
+  left: 280px;
+}
+
+.latest-video-next-btn {
+  top: 1220px;
+  right: 30px;
 }

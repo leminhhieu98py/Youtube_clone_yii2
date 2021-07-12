@@ -16,6 +16,11 @@ use yii\helpers\Url;
                             : 'btn-outline-secondary' ?>" href="<?= Url::to(['/videos/dislike', 'id' => $model->video_id]) ?>" data-method="post" data-pjax="1">
     <i class="fas fa-thumbs-down"></i> <?= $model->getDislikes()->count() ?>
 </a>
+<a class="btn btn-sm <?= $model->isWatchLaterBy(Yii::$app->user->id)
+                            ? 'btn-outline-danger'
+                            : 'btn-outline-secondary' ?>" href="<?= Url::to(['/videos/watchlater', 'id' => $model->video_id]) ?>" data-method="post" data-pjax="1">
+    <i class="fas fa-clock"></i> WATCH LATER
+</a>
 <div class="btn btn-sm btn-outline-secondary hinge-btn">
     <i class="fas fa-share-alt"> SHARE</i>
 </div>

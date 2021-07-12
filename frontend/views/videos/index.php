@@ -2,6 +2,8 @@
 
 use yii\widgets\ListView;
 
+$this->title = 'iTube - Share to be shared';
+
 echo ListView::widget([
     'dataProvider' => $dataProvider,
     'itemView' => '_video_item',

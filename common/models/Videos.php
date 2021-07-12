@@ -217,4 +217,11 @@ class Videos extends \yii\db\ActiveRecord
             ->disliked()
             ->one();
     }
+    public function isWatchLaterBy($userID)
+    {
+        return VideoWatchLater::find()
+            ->userIDvideoID($userID, $this->video_id)
+            ->watchlater()
+            ->one();
+    }
 }

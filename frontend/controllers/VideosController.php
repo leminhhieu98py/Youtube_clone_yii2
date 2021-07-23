@@ -40,9 +40,13 @@ class VideosController extends Controller
     }
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Videos::find()->with('createdBy')->published()->latest(),
-        ]);
+        $dataProvider = Videos::find()
+            ->published()
+            ->latest()
+            ->all();
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => Videos::find()->with('createdBy')->published()->latest(),
+        // ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

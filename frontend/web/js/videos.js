@@ -9,8 +9,8 @@ $(function () {
 
   // Sidebar
   let currentRoute = $(".sidebar-itube").data("route");
-  console.log(currentRoute);
-  console.log(baseUrl);
+  // console.log(currentRoute);
+  // console.log(baseUrl);
 
   $(`a[href="${currentRoute}"]`).addClass("active");
   $(`a[href="${currentRoute}"]`).children(".aside-nav-link").addClass("active");
@@ -134,6 +134,17 @@ $(function () {
     $(".main-side-bar").toggleClass("active");
     $(".main.content-wrapper").toggleClass("active");
   });
+
+  $(window).resize(function(){
+    let windowWidth = $(window).width();
+    if(windowWidth < 992){
+      $(".main-side-bar").addClass("active");
+      $(".main.content-wrapper").addClass("active");
+    }else{
+      $(".main-side-bar").removeClass("active");
+      $(".main.content-wrapper").removeClass("active");
+    }
+  })
 
   // Check login for comment + submit comment
   // declare comment function

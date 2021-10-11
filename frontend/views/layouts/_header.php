@@ -11,14 +11,14 @@ $currentRoute = '/' . $controller . '/' . $action;
 
 <div class="header-site shadow-sm d-flex flex-wrap">
     <!-- Left -->
-    <div class="d-flex col-lg-2 col-md-3">
+    <div class="d-flex col-lg-2 col-md-4 col-sm-4">
         <div class="menu-icon-wrapper"><i class="fas fa-bars" style="font-size:20px; color: rgb(116,116,116);"></i></div>
         <div class="d-flex align-items-center youtube-studio-icon-wrapper"><a href="<?= Yii::$app->homeUrl ?>"><img class="youtube-studio-icon" src="https://www.gstatic.com/youtube/img/creator/yt_studio_logo.svg" alt="youtube-icon"></a></div>
     </div>
     <div class="col-1"></div>
 
     <!-- Middle -->
-    <div class="col-6">
+    <div class="col-lg-6 col-md-7 col-sm-7 search-bar-wrapper">
         <form action="<?php echo Url::to(['/videos/search']) ?>" class="form-inline">
             <input class="form-control mr-sm-2 input-search-bar" type="search" placeholder="Search..." name="keyword" value="<?= Yii::$app->request->get('keyword') ?>">
             <button class="btn studio-search-btn my-2 my-sm-0">Search</button>
@@ -26,7 +26,7 @@ $currentRoute = '/' . $controller . '/' . $action;
     </div>
 
     <!-- Right -->
-    <div class="d-flex justify-content-end col-lg-3 col-md-2 col-sm-2">
+    <div class="d-flex justify-content-end col-lg-3 col-md-12 profile-icon-wrapper">
         <div class="help-wrapper">
             <i class="far fa-question-circle help"></i>
         </div>

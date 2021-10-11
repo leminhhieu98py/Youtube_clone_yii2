@@ -21,7 +21,7 @@ if (isset(Yii::$app->user->identity->id)) {
 <div class="row m-4 ml-5">
 
     <!-- Left side -->
-    <div class="col-sm-8">
+    <div class="col-lg-8 col-md-12">
 
         <!-- Main video -->
         <div class="embed-responsive embed-responsive-16by9 mb-3">
@@ -30,11 +30,11 @@ if (isset(Yii::$app->user->identity->id)) {
 
         <!-- Title, like, dislike,... -->
         <h5><?= $model->title ?></h5>
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-4 col-md-12 mt-2">
                 <p class="text-muted m-0"><?= $model->getViews()->count() ?> views • <?= Yii::$app->formatter->asDate($model->created_at) ?></p>
             </div>
-            <div class="">
+            <div class="col-lg-8 col-md-12 mt-2 _buttons_video_view">
                 <?php
                 Pjax::begin([])
                 ?>
@@ -98,7 +98,7 @@ if (isset(Yii::$app->user->identity->id)) {
     </div>
 
     <!-- Right side -->
-    <div class="col-sm-4">
+    <div class="col-lg-4 col-md-12">
         <?php
         foreach ($similarVideos as $similarVideo) {
         ?>

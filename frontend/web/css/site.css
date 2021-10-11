@@ -60,12 +60,6 @@ body {
   }
 }
 
-/* SCROLL BAR */
-::-webkit-scrollbar-thumb {
-  background-color: red !important;
-  border-radius: 10px !important;
-}
-
 main {
   flex: 1;
 }
@@ -473,6 +467,10 @@ aside .nav-pills .nav-link.active {
   border-bottom: 2px solid #000;
 }
 
+._buttons_video_view{
+  text-align: right;
+}
+
 /* CHANNEL ------- ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------- */
 .channel-wrapper {
@@ -486,7 +484,7 @@ aside .nav-pills .nav-link.active {
   background-image: url("../storage/banner/banner_for_iTube.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  /* background-position: center; */
   background-attachment: fixed;
 }
 
@@ -662,4 +660,42 @@ aside .nav-pills .nav-link.active {
 .latest-video-next-btn {
   top: 1220px;
   right: 30px;
+}
+
+
+
+/* RESPONSIVE ------- ----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  ._buttons_video_view{
+    text-align: left;
+  }
+
+  .profile-icon-wrapper{
+    display: none !important;
+  }
+
+  .card-title{
+    font-size: 14px;
+  }
+
+  .channel-name{
+    font-size: 14px;
+  }
+
+  .text-muted.card-text{
+    font-size: 13px;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .search-bar-wrapper{
+    display: none !important;
+  }
+
+  .text-muted.card-text{
+    font-size: 12px;
+  }
+  
 }

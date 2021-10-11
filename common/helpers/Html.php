@@ -16,7 +16,7 @@ class Html
                 'page' => 'home',
             ]),
             [
-                'class' => 'text-dark',
+                'class' => 'text-dark channel-name',
                 'style' => 'text-decoration: none; font-weight: 500;'
             ]
         );

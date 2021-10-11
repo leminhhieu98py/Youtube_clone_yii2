@@ -37,12 +37,6 @@ body {
   }
 }
 
-/* SCROLL BAR */
-::-webkit-scrollbar-thumb {
-  background-color: red !important;
-  border-radius: 10px !important;
-}
-
 main {
   flex: 1;
 }

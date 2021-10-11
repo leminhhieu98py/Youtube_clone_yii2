@@ -14,8 +14,8 @@ $this->title = "iTube - $channel->username's Channel";
 ?>
 <div class="channel-wrapper">
     <div class="channel-banner"></div>
-    <div class="d-flex w-100 align-items-center channel-info-wrapper">
-        <div class="channel-img-wrapper d-flex justify-content-center col-1 p-0">
+    <div class="row ml-0 mr-0 align-items-center channel-info-wrapper">
+        <div class="channel-img-wrapper d-flex justify-content-center col-lg-1 col-md-2 col-sm-3 p-0">
             <img src="<?= $channel->getAvatarLink() ?>" alt="avatar">
         </div>
         <div class="col-2 d-flex flex-column justify-content-center">
@@ -24,12 +24,14 @@ $this->title = "iTube - $channel->username's Channel";
             </div>
             <p class="text-muted m-0 channel-subscriber-count"><?= $channel->getSubscribes()->count() ?> <?= ($channel->getSubscribes()->count() > 1) ? 'subscribers' : 'subscriber' ?></p>
         </div>
-        <hr class="my-4">
-        <?php Pjax::begin() ?>
-        <?php echo $this->render('_subscribe', [
-            'channel' => $channel,
-        ]) ?>
-        <?php Pjax::end() ?>
+        <!-- <hr class="my-4"> -->
+        <div class="col-lg-9 col-md-8 col-sm-7 text-right">
+            <?php Pjax::begin() ?>
+            <?php echo $this->render('_subscribe', [
+                'channel' => $channel,
+            ]) ?>
+            <?php Pjax::end() ?>
+        </div>
     </div>
 
     <!-- CHANNEL NAV BAR -->

@@ -21,7 +21,7 @@ class VideosController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['like', 'dislike', 'history', 'checkcomment', 'comment'],
+                'only' => ['like', 'dislike', 'history', 'checkcomment', 'comment', 'library'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -44,9 +44,6 @@ class VideosController extends Controller
             ->published()
             ->latest()
             ->all();
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => Videos::find()->with('createdBy')->published()->latest(),
-        // ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -200,6 +197,65 @@ class VideosController extends Controller
 
         return $this->render('history', [
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionLibrary()
+    {
+        $historyVideos = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_view
+                    WHERE user_id = (:user_id)
+                    GROUP BY video_id) vv",
+                    'vv.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vv.max_date DESC')
+                ->limit(4),
+            'pagination' => false,
+        ]);
+
+        $watchLaterVideos = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_watch_later
+                    WHERE user_id = (:user_id)
+                    AND type = 1
+                    GROUP BY video_id) vwl",
+                    'vwl.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vwl.max_date DESC')
+                ->limit(4),
+            'pagination' => false,
+        ]);
+
+        $likedVideos = new ActiveDataProvider([
+            'query' => Videos::find()
+                ->alias('v')
+                ->innerJoin(
+                    "(SELECT video_id, MAX(created_at) as max_date 
+                    FROM video_like
+                    WHERE user_id = (:user_id)
+                    AND type = 1
+                    GROUP BY video_id) vl",
+                    'vl.video_id = v.video_id',
+                    ['user_id' => Yii::$app->user->id],
+                )
+                ->orderBy('vl.max_date DESC')
+                ->limit(4),
+                'pagination' => false,
+        ]);
+
+        return $this->render('library', [
+            'historyVideos' => $historyVideos,
+            'watchLaterVideos' => $watchLaterVideos,
+            'likedVideos' => $likedVideos,
         ]);
     }
 

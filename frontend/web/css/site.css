@@ -662,6 +662,22 @@ aside .nav-pills .nav-link.active {
   right: 30px;
 }
 
+/* LIBRARY ------- ----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------- */
+.library-title a {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsl(210, 10%, 35%) !important; 
+}
+
+.library-title a:first-child:hover{
+  color: #b90000 !important;
+}
+
+.library-title a:last-child:hover{
+  color: #000 !important;
+}
+
 
 
 /* RESPONSIVE ------- ----------------------------------------------------------------------------------

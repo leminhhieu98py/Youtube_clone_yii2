@@ -381,11 +381,19 @@ figure {
   font-size: 14px;
 }
 
+.header-user__title button{
+  padding: 10px 1.5rem;
+}
+
 .header-user__title button:hover{
   padding-left: 27px;
   font-weight: 600;
   color: #b90000;
   transition: 0.25s ease-in-out;
+}
+
+.dropdown-menu.dropdown-menu-right {
+  padding: 0;
 }
 
 /* ASIDE------- ----------------------------------------------------------------------------------

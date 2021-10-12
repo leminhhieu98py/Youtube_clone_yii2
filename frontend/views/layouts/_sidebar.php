@@ -28,7 +28,7 @@ if (isset(Yii::$app->user->identity->id)) {
             <div class="aside-nav-link">History</div>
         </a>
         <div style="border-top: 1px solid rgb(229, 229, 229); margin: 0 10px;"></div>
-        <a href="<?= Url::to('/videos/library') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+        <a href="<?= Url::to(['/videos/library', 'username' => $user->username]) ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-book"></i></div>
             <div class="aside-nav-link">Library</div>
         </a>

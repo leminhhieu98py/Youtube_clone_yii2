@@ -467,7 +467,7 @@ aside .nav-pills .nav-link.active {
   border-bottom: 2px solid #000;
 }
 
-._buttons_video_view{
+._buttons_video_view {
   text-align: right;
 }
 
@@ -667,51 +667,82 @@ aside .nav-pills .nav-link.active {
 .library-title a {
   font-size: 20px;
   font-weight: 600;
-  color: hsl(210, 10%, 35%) !important; 
+  color: hsl(210, 10%, 35%) !important;
 }
 
-.library-title a:first-child:hover{
+.library-title a:first-child:hover {
   color: #b90000 !important;
 }
 
-.library-title a:last-child:hover{
+.library-title a:last-child:hover {
   color: #000 !important;
 }
 
+.statistics-wrapper .avatar {
+  margin-top: 100px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ededed;
+}
 
+.statistics-wrapper .statistic-title-wrapper{
+  display: flex;
+  justify-content: space-between;
+  color: #606060;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.statistics-wrapper .statistic-hr{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.library-wrapper .card-title {
+  font-size: 14px;
+}
+
+.library-wrapper .channel-name {
+  font-size: 14px;
+}
+
+.library-wrapper .text-muted.card-text {
+  font-size: 14px;
+}
 
 /* RESPONSIVE ------- ----------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------- */
 @media (max-width: 992px) {
-  ._buttons_video_view{
+  ._buttons_video_view {
     text-align: left;
   }
 
-  .profile-icon-wrapper{
+  .profile-icon-wrapper {
     display: none !important;
   }
 
-  .card-title{
+  .card-title {
     font-size: 14px;
   }
 
-  .channel-name{
+  .channel-name {
     font-size: 14px;
   }
 
-  .text-muted.card-text{
+  .text-muted.card-text {
     font-size: 13px;
   }
-  
 }
 
 @media (max-width: 600px) {
-  .search-bar-wrapper{
+  .search-bar-wrapper {
     display: none !important;
   }
 
-  .text-muted.card-text{
+  .text-muted.card-text {
     font-size: 12px;
   }
-  
 }

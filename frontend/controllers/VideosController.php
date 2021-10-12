@@ -7,6 +7,7 @@ use common\models\VideoLike;
 use common\models\Videos;
 use common\models\VideoView;
 use common\models\VideoWatchLater;
+use common\models\User;
 use yii\base\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -252,11 +253,45 @@ class VideosController extends Controller
                 'pagination' => false,
         ]);
 
+        // count subsrcibers
+        $params = Yii::$app->request->get();
+        $username = $params['username'];
+        $channel = $this->findChannel($username);
+
+        // count videos
+        $videos = Videos::find()
+        ->creator($channel->id)
+        ->published()
+        ->latest()
+        ->all();
+
+        // count total likes
+        $user = Yii::$app->user->identity;
+        $userID = $user->id;
+        $totalLikes = VideoLike::find()
+        ->liked()
+        ->alias('vl')
+        ->innerJoin(Videos::tableName() . 'v', 'v.video_id = vl.video_id')
+        ->andWhere(['v.created_by' => $userID])
+        ->count();
+
         return $this->render('library', [
             'historyVideos' => $historyVideos,
             'watchLaterVideos' => $watchLaterVideos,
             'likedVideos' => $likedVideos,
+            'channel' => $channel,
+            'videos' => $videos,
+            'totalLikes' => $totalLikes,
         ]);
+    }
+
+    protected function findChannel($username)
+    {
+        $channel = User::findByUsername($username);
+        if (!$channel) {
+            throw new NotFoundHttpException("This channel does not exist anymore!");
+        }
+        return $channel;
     }
 
     public function actionLikedvideos()

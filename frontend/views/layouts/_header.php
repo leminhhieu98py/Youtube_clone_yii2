@@ -60,11 +60,11 @@ $currentRoute = '/' . $controller . '/' . $action;
                     <?php echo Html::channelLink($user) ?>
                 </div>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="<?= Url::to(['/channel/view', 'username' => $user->username]) ?>" style="text-decoration: none;"><button class="dropdown-item" type="button">My channel</button></a>
-                    <a href="" style="text-decoration: none;"><button class="dropdown-item" type="button">My iTube Studio</button></a>
+                    <a class="header-user__title" href="<?= Url::to(['/channel/view', 'username' => $user->username, 'page' => 'home']) ?>" style="text-decoration: none;"><button class="dropdown-item" type="button">My channel</button></a>
+                    <!-- <a href="" style="text-decoration: none;"><button class="dropdown-item" type="button">My iTube Studio</button></a> -->
 
-                    <a href="<?= Url::to(['/site/logout']) ?>" data-method="post" class="d-flex justify-content-between align-items-center text-dark dropdown-item" style="text-decoration: none;">
-                        Log out<i class="fas fa-sign-out-alt"></i>
+                    <a class="header-user__title" href="<?= Url::to(['/site/logout']) ?>" data-method="post" class="d-flex justify-content-between align-items-center text-dark dropdown-item" style="text-decoration: none;">
+                        <button class="dropdown-item" type="button">Log out<i class="ml-2 fas fa-sign-out-alt" style="font-size: 16px;"></i></button>
                     </a>
                 </div>
             </div>

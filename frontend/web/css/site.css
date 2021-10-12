@@ -345,7 +345,12 @@ figure {
 .fa-sign-out-alt,
 .fa-sign-in-alt {
   color: #b90000;
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.fa-user-plus{
+  color: #b90000;
+  font-size: 14px;
 }
 
 .header-user-wrapper {
@@ -373,6 +378,14 @@ figure {
 .logout {
   padding: 8px 6px 8px 0;
   font-weight: 500;
+  font-size: 14px;
+}
+
+.header-user__title button:hover{
+  padding-left: 27px;
+  font-weight: 600;
+  color: #b90000;
+  transition: 0.25s ease-in-out;
 }
 
 /* ASIDE------- ----------------------------------------------------------------------------------

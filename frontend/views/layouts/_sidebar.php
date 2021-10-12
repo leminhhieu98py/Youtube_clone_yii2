@@ -28,15 +28,15 @@ if (isset(Yii::$app->user->identity->id)) {
             <div class="aside-nav-link">History</div>
         </a>
         <div style="border-top: 1px solid rgb(229, 229, 229); margin: 0 10px;"></div>
-        <a href="<?= Url::to(['/videos/library', 'username' => $user->username]) ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+        <a href="<?= (isset($user)) ? Url::to(['/videos/library', 'username' => $user->username]) : Url::to('/site/login') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-book"></i></div>
             <div class="aside-nav-link">Library</div>
         </a>
-        <a href="<?= Url::to('/videos/watchlatervideos') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+        <a href="<?= (isset($user)) ? Url::to('/videos/watchlatervideos') : Url::to('/site/login') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-clock"></i></div>
             <div class="aside-nav-link">Watch Later</div>
         </a>
-        <a href="<?= Url::to('/videos/likedvideos') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+        <a href="<?= (isset($user)) ? Url::to('/videos/likedvideos') : Url::to('/site/login') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-thumbs-up"></i></div>
             <div class="aside-nav-link">Liked Videos</div>
         </a>

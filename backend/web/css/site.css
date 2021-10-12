@@ -275,13 +275,14 @@ figure {
 
 .fa-video {
   padding: 5px 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #b90000;
 }
 
 .create {
   padding: 8px 0 8px 6px;
   font-weight: 500;
+  font-size: 14px;
 }
 .logout-wrapper {
   border: solid 1px rgb(230, 230, 230);
@@ -308,12 +309,13 @@ figure {
 .fa-sign-out-alt,
 .fa-sign-in-alt {
   color: #b90000;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .logout {
   padding: 8px 6px 8px 0;
   font-weight: 500;
+  font-size: 14px;
 }
 
 /* ASIDE------- ----------------------------------------------------------------------------------

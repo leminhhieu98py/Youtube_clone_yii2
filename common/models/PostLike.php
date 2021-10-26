@@ -36,8 +36,8 @@ class PostLike extends \yii\db\ActiveRecord
             [['user_id', 'type'], 'integer'],
             [['created_at'], 'safe'],
             [['post_id'], 'string', 'max' => 16],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::className(), 'targetAttribute' => ['post_id' => 'post_id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::class, 'targetAttribute' => ['post_id' => 'post_id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -62,7 +62,7 @@ class PostLike extends \yii\db\ActiveRecord
      */
     public function getPost()
     {
-        return $this->hasOne(Posts::className(), ['post_id' => 'post_id']);
+        return $this->hasOne(Posts::class, ['post_id' => 'post_id']);
     }
 
     /**
@@ -72,7 +72,7 @@ class PostLike extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

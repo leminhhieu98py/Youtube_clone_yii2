@@ -36,8 +36,8 @@ class VideoComment extends \yii\db\ActiveRecord
             [['user_id', 'created_at'], 'integer'],
             [['video_id'], 'string', 'max' => 16],
             [['content'], 'string', 'max' => 5000],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videos::className(), 'targetAttribute' => ['video_id' => 'video_id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videos::class, 'targetAttribute' => ['video_id' => 'video_id']],
         ];
     }
 
@@ -62,7 +62,7 @@ class VideoComment extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -72,7 +72,7 @@ class VideoComment extends \yii\db\ActiveRecord
      */
     public function getVideo()
     {
-        return $this->hasOne(Videos::className(), ['video_id' => 'video_id']);
+        return $this->hasOne(Videos::class, ['video_id' => 'video_id']);
     }
 
     /**

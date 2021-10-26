@@ -40,7 +40,7 @@ class Posts extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['post_id'], 'string', 'max' => 16],
             [['post_id'], 'unique'],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -65,7 +65,7 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getPostComments()
     {
-        return $this->hasMany(PostComment::className(), ['post_id' => 'post_id']);
+        return $this->hasMany(PostComment::class, ['post_id' => 'post_id']);
     }
 
     /**
@@ -75,7 +75,7 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getPostImages()
     {
-        return $this->hasMany(PostImages::className(), ['post_id' => 'post_id']);
+        return $this->hasMany(PostImages::class, ['post_id' => 'post_id']);
     }
 
     /**
@@ -85,7 +85,7 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getPostLikes()
     {
-        return $this->hasMany(PostLike::className(), ['post_id' => 'post_id']);
+        return $this->hasMany(PostLike::class, ['post_id' => 'post_id']);
     }
 
     /**
@@ -95,7 +95,7 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
     }
 
     /**

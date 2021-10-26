@@ -33,7 +33,7 @@ class PostImages extends \yii\db\ActiveRecord
             [['post_id', 'image_name', 'image_path'], 'required'],
             [['post_id'], 'string', 'max' => 16],
             [['image_name', 'image_path'], 'string', 'max' => 512],
-            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::className(), 'targetAttribute' => ['post_id' => 'post_id']],
+            [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::class, 'targetAttribute' => ['post_id' => 'post_id']],
         ];
     }
 
@@ -57,7 +57,7 @@ class PostImages extends \yii\db\ActiveRecord
      */
     public function getPost()
     {
-        return $this->hasOne(Posts::className(), ['post_id' => 'post_id']);
+        return $this->hasOne(Posts::class, ['post_id' => 'post_id']);
     }
 
     /**

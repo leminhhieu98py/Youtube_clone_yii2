@@ -20,6 +20,8 @@ use Yii;
  */
 class Posts extends \yii\db\ActiveRecord
 {
+    const STATUS_UNLISTED = 0;
+    const STATUS_PUBLISHED = 1;
     /**
      * {@inheritdoc}
      */
@@ -105,5 +107,20 @@ class Posts extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\PostsQuery(get_called_class());
+    }
+
+    public function getImageLink()
+    {
+        return $this->has_thumbnail
+            ? Yii::$app->params['frontendUrl'] . '/storage/post_images/' . $this->post_id . '.jpg'
+            : '';
+    }
+
+    public function getStatusLabels()
+    {
+        return [
+            self::STATUS_UNLISTED => 'Unlisted',
+            self::STATUS_PUBLISHED => 'Published',
+        ];
     }
 }

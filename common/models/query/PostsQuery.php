@@ -31,4 +31,12 @@ class PostsQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function creator($userID){
+        return $this->andWhere(['created_by' => $userID]);
+    }
+
+    public function latest(){
+        return $this->orderBy(['created_at' => SORT_DESC]);
+    }
 }

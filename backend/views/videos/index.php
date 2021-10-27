@@ -1,6 +1,5 @@
 <?php
 
-use aryelds\sweetalert\SweetAlert;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -8,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider --> Videos */
 
-$this->title = 'studio.iTube - Videos Management';
+$this->title = 'Videos Management';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="videos-index">
@@ -31,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'attribute' => 'title',
+                'attribute' => 'Video',
                 'content' => function ($model) {
                     return $this->render(
                         '_video_item',

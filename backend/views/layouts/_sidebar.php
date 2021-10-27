@@ -35,11 +35,19 @@ if (isset(Yii::$app->user->identity->id)) {
         </a>
         <a href="<?= Url::to('/videos/index') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-photo-video"></i></div>
-            <div class="aside-nav-link">Content</div>
+            <div class="aside-nav-link">Videos</div>
         </a>
         <a href="<?= Url::to('/videos/create') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
             <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-folder-plus"></i></i></div>
-            <div class="aside-nav-link">Upload</div>
+            <div class="aside-nav-link">Upload Video</div>
+        </a>
+        <a href="<?= Url::to('/posts/index') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+            <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-calendar-day"></i></i></div>
+            <div class="aside-nav-link">Posts</div>
+        </a>
+        <a href="<?= Url::to('/posts/create') ?>" class="nav-link text-dark d-flex align-items-center" style="text-decoration: none;">
+            <div class="aside-nav-link aside-icon-wrapper p-0 text-center col-2"><i class="fas fa-plus"></i></div>
+            <div class="aside-nav-link">Upload Post</div>
         </a>
     </div>
 </aside>

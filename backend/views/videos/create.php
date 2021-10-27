@@ -1,5 +1,6 @@
 <?php
 
+use backend\assets\VideosAsset;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
@@ -9,6 +10,7 @@ use yii\helpers\Html;
 $this->title = 'Upload Videos';
 $this->params['breadcrumbs'][] = ['label' => 'Videos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+VideosAsset::register($this);
 ?>
 
 <div class="videos-create m-4">

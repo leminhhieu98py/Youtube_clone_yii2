@@ -1,5 +1,6 @@
 <?php
 
+use backend\assets\VideosAsset;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -9,6 +10,7 @@ use yii\helpers\Url;
 
 $this->title = 'Videos Management';
 $this->params['breadcrumbs'][] = $this->title;
+VideosAsset::register($this);
 ?>
 <div class="videos-index">
     <h1 class="m-4"><?= Html::encode($this->title) ?></h1>

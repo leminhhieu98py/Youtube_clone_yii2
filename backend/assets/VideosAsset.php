@@ -7,15 +7,15 @@ use yii\web\AssetBundle;
 /**
  * Main backend application asset bundle.
  */
-class AppAsset extends AssetBundle
+class VideosAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/videos.css',
     ];
     public $js = [
-        'js/app.js',
+        'js/videos.js',
         'js/confirmSwal.js',
         'js/popper.min.js'
     ];
